@@ -40,6 +40,8 @@ export const MySlider = () => {
 
   return (
     <div style={{ position: "relative" }}>
+      <Typography>Choose type of the activity:</Typography>
+
       <Grid container alignItems="center" justifyContent="center">
         {visibleItems.map((item, index) => (
           <Grid item key={index}>
@@ -96,24 +98,6 @@ export const MySlider = () => {
       >
         <ChevronRightIcon />
       </IconButton>
-
-      {/* <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <IconButton onClick={handlePrevious} disabled={activePage === 0}>
-          <ChevronLeftIcon />
-        </IconButton>
-        <IconButton
-          onClick={handleNext}
-          disabled={activePage === Math.ceil(items.length / itemsPerPage) - 1}
-        >
-          <ChevronRightIcon />
-        </IconButton>
-      </div> */}
     </div>
   );
 };

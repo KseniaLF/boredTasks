@@ -1,5 +1,10 @@
 export const activities = [
   {
+    type: "random",
+    description:
+      "Discover something unexpected or try out of the ordinary today.",
+  },
+  {
     type: "education",
     description: "Learn something new or explore a topic of interest today.",
   },
