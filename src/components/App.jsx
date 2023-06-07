@@ -1,6 +1,4 @@
-//
-
-import { Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import List from "../pages/List";
 import Container from "@mui/material/Container";
