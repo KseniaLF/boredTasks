@@ -8,8 +8,10 @@ export const getTask = async () => {
 const UNSPLASH_KEY = import.meta.env.VITE_UNSPLASH_KEY;
 
 export const getImg = async (title) => {
-  const response = await axios.get(
-    `https://api.unsplash.com/photos/random?query=${title}&client_id=${UNSPLASH_KEY}`
-  );
-  return response.data;
+  if (UNSPLASH_KEY) {
+    const response = await axios.get(
+      `https://api.unsplash.com/photos/random?query=${title}&client_id=${UNSPLASH_KEY}`
+    );
+    return response.data;
+  }
 };
