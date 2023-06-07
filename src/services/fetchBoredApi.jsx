@@ -1,7 +1,12 @@
 import axios from "axios";
 
-export const getTask = async () => {
-  const response = await axios.get(`https://www.boredapi.com/api/activity/`);
+export const getTask = async (taksType) => {
+  const query = taksType && taksType !== "random" ? `?type=${taksType}` : "/";
+
+  const response = await axios.get(
+    `https://www.boredapi.com/api/activity${query}`
+  );
+
   return response.data;
 };
 

@@ -14,7 +14,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { activities as items } from "../constants/activities";
 
-export const MySlider = () => {
+export const MySlider = ({ setTaskType }) => {
   const [activePage, setActivePage] = useState(0);
 
   const isMobile = useMediaQuery("(max-width: 600px)");
@@ -65,8 +65,11 @@ export const MySlider = () => {
                 <CardContent sx={{ textAlign: "center", p: 1, pb: 0 }}>
                   <Typography>{item.description}</Typography>
                 </CardContent>
+
                 <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-                  <Button size="small">{item.type}</Button>
+                  <Button size="small" onClick={() => setTaskType(item.type)}>
+                    {item.type}
+                  </Button>
                 </CardActions>
               </Card>
             </ListItem>

@@ -3,12 +3,18 @@ import { Box, Button, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
+import { useState } from "react";
 
 export const TaskCard = ({ task, imageUrl }) => {
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <Box mt={2}>
+    <Box mt={2} sx={{ display: "flex", justifyContent: "center" }}>
       <Card
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
         sx={{
+          width: 400,
           height: "100%",
           transition: "all 0.3s ease",
           "&:hover": {
@@ -24,7 +30,9 @@ export const TaskCard = ({ task, imageUrl }) => {
         </CardContent>
 
         <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-          <Button size="small">{task.type}</Button>
+          <Button size="small">
+            {hovered ? `Add to the collection` : task.type}
+          </Button>
         </CardActions>
       </Card>
     </Box>
