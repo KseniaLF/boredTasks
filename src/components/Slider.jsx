@@ -67,7 +67,13 @@ export const MySlider = ({ setTaskType }) => {
                 </CardContent>
 
                 <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-                  <Button size="small" onClick={() => setTaskType(item.type)}>
+                  <Button
+                    size="small"
+                    onClick={() => {
+                      const randomParam = Math.random();
+                      setTaskType({ type: item.type, randomParam });
+                    }}
+                  >
                     {item.type}
                   </Button>
                 </CardActions>
