@@ -15,7 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 
-const pages = ["list", "achievements"];
+const pages = ["list", "achievements", "completed"];
 
 function AppMenu() {
   const [isOpenNav, setIsOpenNav] = React.useState(null);
@@ -40,6 +40,7 @@ function AppMenu() {
           display: "flex",
           justifyContent: "space-between",
           pl: 2,
+          pr: 2,
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>

@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import Menu from "../components/Menu";
 const List = lazy(() => import("../pages/List"));
 const Achievements = lazy(() => import("../pages/Achievements"));
+const Completed = lazy(() => import("../pages/Completed"));
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/list" element={<List />} />
           <Route path="/achievements" element={<Achievements />} />
+          <Route path="/completed" element={<Completed />} />
         </Routes>
       </Container>
     </>

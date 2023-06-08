@@ -17,3 +17,8 @@ export const updateResolveStatus = async (id, body) => {
   const response = await axios.patch(`/tasks/${id}/resolved`, body);
   return response.data;
 };
+
+export const getAchievements = async () => {
+  const response = await axios.get(`/tasks/achievements`);
+  return response.data;
+};

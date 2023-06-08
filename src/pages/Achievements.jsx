@@ -1,82 +1,58 @@
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import { Box, Grid, Hidden, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getTask } from "../services/DB";
-import { formatDate } from "../helpers/formatDate";
+import { getAchievements } from "../services/DB";
+import { Box, Card, CardContent, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const Achievements = () => {
-  const [tasks, setTasks] = useState([]);
+  const [achives, setAchives] = useState([]);
+
+  const theme = useTheme();
 
   useEffect(() => {
     const fetch = async () => {
-      const data = await getTask("resolved");
-      setTasks(data);
+      const data = await getAchievements("resolved");
+      setAchives(data);
     };
     fetch();
   }, []);
 
   return (
-    <TableContainer component={Box} mt={2}>
-      <Grid container>
-        <Grid item xs={12}>
-          <Hidden smDown>
-            <Table sx={{ minWidth: 650 }}>
-              <TableHead>
-                <TableRow>
-                  <TableCell>
-                    <Typography fontSize={16}>Title</Typography>
-                  </TableCell>
-                  <TableCell align="right">
-                    <Typography fontSize={16}>Type</Typography>
-                  </TableCell>
-                  <TableCell align="right">
-                    <Typography fontSize={16}>When</Typography>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
+    <>
+      <Typography variant="h5" mt={3} mb={3}>
+        Achievements
+      </Typography>
 
-              <TableBody>
-                {tasks.map((row) => (
-                  <TableRow
-                    key={row["_id"]}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      <Typography fontSize={16}>{row.activity}</Typography>
-                    </TableCell>
-                    <TableCell align="right">
-                      <Typography fontSize={16}>{row.type}</Typography>
-                    </TableCell>
-                    <TableCell align="right">
-                      <Typography fontSize={16}>
-                        {formatDate(row.createdAt)}
-                      </Typography>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </Hidden>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: 3,
+        }}
+      >
+        {achives.map((achive) => (
+          <Card
+            sx={{
+              width: 150,
+              height: 150,
+              backgroundColor: theme.palette.primary.main,
+              color: "white",
+              borderRadius: "50%",
 
-          <Hidden smUp>
-            {tasks.map((row) => (
-              <Box key={row["_id"]} mt={2}>
-                <Typography sx={{ fontWeight: "bold" }}>
-                  {row.activity}
-                </Typography>
-                <Typography>{row.type}</Typography>
-                <Typography>{formatDate(row.createdAt)}</Typography>
-              </Box>
-            ))}
-          </Hidden>
-        </Grid>
-      </Grid>
-    </TableContainer>
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            key={achive.type}
+          >
+            <CardContent sx={{ textAlign: "center", fontSize: 18 }}>
+              <Typography fontSize={16}>{achive.type}</Typography>
+              <Typography fontSize={20}>{achive.price}</Typography>
+            </CardContent>
+          </Card>
+        ))}
+      </Box>
+    </>
   );
 };
 
