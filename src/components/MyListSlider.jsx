@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  Box,
   Button,
   Card,
   CardActions,
@@ -8,12 +9,10 @@ import {
   IconButton,
   ListItem,
   Typography,
-  useMediaQuery,
 } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { activities as items } from "../constants/activities";
-import { StyledLink } from "../constants/StyledLink";
 
 export const MyListSlider = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -42,11 +41,12 @@ export const MyListSlider = () => {
     }
   };
   return (
-    <div style={{ position: "relative" }}>
-      <Typography component="h1" variant="h6">
-        Choose fresh ideas to do:
-      </Typography>
-
+    <Box
+      sx={{
+        position: "relative",
+        mt: 5,
+      }}
+    >
       <Grid container alignItems="center" justifyContent="center">
         {getVisibleItems().map((item, index) => (
           <Grid item key={index}>
@@ -55,20 +55,21 @@ export const MyListSlider = () => {
                 width: 250,
                 height: 140,
                 ...(index === 1 && {
-                  boxShadow: "0 0 8px rgba(0, 0, 0, 0.5)",
+                  width: 500,
+                  height: "100%",
                 }),
               }}
             >
-              <StyledLink
+              <Box
                 onClick={() => {
-                  console.log(123);
-                  const randomParam = Math.random();
-                  setTaskType({ type: item.type, randomParam });
+                  console.log(item);
                 }}
               >
                 <Card
                   sx={{
-                    //   backgroundColor: "black",
+                    ...(index === 1 && {
+                      boxShadow: "0 0 8px rgba(0, 0, 0, 0.5)",
+                    }),
                     height: "100%",
                     transition: "all 0.3s ease",
                     "&:hover": {
@@ -78,7 +79,16 @@ export const MyListSlider = () => {
                   }}
                 >
                   <CardContent sx={{ textAlign: "center", p: 1, pb: 0 }}>
-                    <Typography>{item.description}</Typography>
+                    <Typography mb={1}>{item.description}</Typography>
+
+                    {index === 1 && (
+                      <img
+                        style={{ borderRadius: 2 }}
+                        width={"100%"}
+                        src="https://cdn.pixabay.com/photo/2023/05/28/13/15/helicopter-8023696_1280.jpg"
+                        alt={item.type}
+                      />
+                    )}
                   </CardContent>
 
                   <CardActions
@@ -87,12 +97,11 @@ export const MyListSlider = () => {
                     <Button size="small">{item.type}</Button>
                   </CardActions>
                 </Card>
-              </StyledLink>
+              </Box>
             </ListItem>
           </Grid>
         ))}
       </Grid>
-
       <IconButton
         style={{
           position: "absolute",
@@ -115,6 +124,6 @@ export const MyListSlider = () => {
       >
         <ChevronRightIcon />
       </IconButton>
-    </div>
+    </Box>
   );
 };
