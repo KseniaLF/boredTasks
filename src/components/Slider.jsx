@@ -68,6 +68,7 @@ export const MySlider = ({ setTaskType }) => {
                   sx={{
                     //   backgroundColor: "black",
                     height: "100%",
+
                     transition: "all 0.3s ease",
                     "&:hover": {
                       boxShadow:

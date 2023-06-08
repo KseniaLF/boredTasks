@@ -19,12 +19,13 @@ export const TaskCard = ({ task, imageUrl, setTaskType }) => {
     };
 
     const fetch = async () => {
-      const data = await addTask(taskData);
-      console.log(data);
+      try {
+        await addTask(taskData);
 
-      if (data) {
         const randomParam = Math.random();
-        setTaskType({ type: data.type, randomParam });
+        setTaskType({ type: task.type, randomParam });
+      } catch (err) {
+        console.log(console.error());
       }
     };
 

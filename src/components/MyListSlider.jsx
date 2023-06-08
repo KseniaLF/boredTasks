@@ -65,6 +65,7 @@ export const MyListSlider = ({ tasks, setTasks }) => {
               }}
             >
               <Box
+                width={"100%"}
                 onClick={() => handleUpdateResolveStatus(item["_id"], setTasks)}
               >
                 <Card
@@ -87,12 +88,14 @@ export const MyListSlider = ({ tasks, setTasks }) => {
                     <Typography mb={1}>{item.activity}</Typography>
 
                     {index === 1 && (
-                      <img
-                        style={{ borderRadius: 2 }}
-                        width={"100%"}
-                        src={item.image}
-                        alt={item.type}
-                      />
+                      <Box sx={{ minHeight: 300 }}>
+                        <img
+                          style={{ borderRadius: 2 }}
+                          width={"100%"}
+                          src={item.image}
+                          alt={item.type}
+                        />
+                      </Box>
                     )}
                   </CardContent>
 
