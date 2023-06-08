@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 import List from "../pages/List";
 import Container from "@mui/material/Container";
 import Menu from "../components/Menu";
+import Achievements from "../pages/Achievements";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/list" element={<List />} />
+          <Route path="/achievements" element={<Achievements />} />
         </Routes>
       </Container>
     </>

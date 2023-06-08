@@ -15,7 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 
-const pages = ["list"];
+const pages = ["list", "achievements"];
 
 function AppMenu() {
   const [isOpenNav, setIsOpenNav] = React.useState(null);
