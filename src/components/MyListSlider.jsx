@@ -13,35 +13,34 @@ import {
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { activities as items } from "../constants/activities";
-
 import { StyledLink } from "../constants/StyledLink";
 
-export const MySlider = ({ setTaskType }) => {
-  const [activePage, setActivePage] = useState(0);
+export const MyListSlider = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const isMobile = useMediaQuery("(max-width: 600px)");
-  const isTablet = useMediaQuery("(max-width: 830px)");
-  const isLaptop = useMediaQuery("(max-width: 1100px)");
-
-  const itemsPerPage = isMobile ? 1 : isTablet ? 2 : isLaptop ? 3 : 4;
-
-  const handlePrevious = () => {
-    setActivePage((prevPage) => (prevPage === 0 ? 0 : prevPage - 1));
-  };
+  const itemsPerPage = 3;
 
   const handleNext = () => {
-    setActivePage((prevPage) =>
-      prevPage === Math.ceil(items.length / itemsPerPage) - 1
-        ? prevPage
-        : prevPage + 1
+    setActiveIndex((prevIndex) => (prevIndex + 1) % items.length);
+  };
+
+  const handlePrevious = () => {
+    setActiveIndex(
+      (prevIndex) => (prevIndex - 1 + items.length) % items.length
     );
   };
 
-  const startIndex = activePage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-
-  const visibleItems = items.slice(startIndex, endIndex);
-
+  const getVisibleItems = () => {
+    const startIndex =
+      (activeIndex + items.length - Math.floor(itemsPerPage / 2)) %
+      items.length;
+    const endIndex = (startIndex + itemsPerPage) % items.length;
+    if (startIndex < endIndex) {
+      return items.slice(startIndex, endIndex);
+    } else {
+      return [...items.slice(startIndex), ...items.slice(0, endIndex)];
+    }
+  };
   return (
     <div style={{ position: "relative" }}>
       <Typography component="h1" variant="h6">
@@ -49,12 +48,15 @@ export const MySlider = ({ setTaskType }) => {
       </Typography>
 
       <Grid container alignItems="center" justifyContent="center">
-        {visibleItems.map((item, index) => (
+        {getVisibleItems().map((item, index) => (
           <Grid item key={index}>
             <ListItem
               sx={{
                 width: 250,
                 height: 140,
+                ...(index === 1 && {
+                  boxShadow: "0 0 8px rgba(0, 0, 0, 0.5)",
+                }),
               }}
             >
               <StyledLink
@@ -99,7 +101,6 @@ export const MySlider = ({ setTaskType }) => {
           transform: "translateY(-50%)",
         }}
         onClick={handlePrevious}
-        disabled={activePage === 0}
       >
         <ChevronLeftIcon />
       </IconButton>
@@ -111,7 +112,6 @@ export const MySlider = ({ setTaskType }) => {
           transform: "translateY(-50%)",
         }}
         onClick={handleNext}
-        disabled={activePage === Math.ceil(items.length / itemsPerPage) - 1}
       >
         <ChevronRightIcon />
       </IconButton>

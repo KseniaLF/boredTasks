@@ -6,11 +6,14 @@ import Typography from "@mui/material/Typography";
 import { activities } from "../constants/activities";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import { MyListSlider } from "./MyListSlider";
 
-export const CardBox = () => {
+export const CardList = () => {
   return (
-    <>
-      <List
+    <div style={{ position: "relative" }}>
+      <MyListSlider />
+
+      {/* <List
         sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
       >
         {activities.map((item) => (
@@ -41,7 +44,7 @@ export const CardBox = () => {
             </Card>
           </ListItem>
         ))}
-      </List>
-    </>
+      </List> */}
+    </div>
   );
 };
