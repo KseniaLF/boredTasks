@@ -12,34 +12,36 @@ import {
 } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { activities as items } from "../constants/activities";
+import { handleUpdateResolveStatus } from "../helpers/handleUpdateResolveStatus";
 
-export const MyListSlider = () => {
+export const MyListSlider = ({ tasks, setTasks }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [hovered, setHovered] = useState(false);
 
   const itemsPerPage = 3;
 
   const handleNext = () => {
-    setActiveIndex((prevIndex) => (prevIndex + 1) % items.length);
+    setActiveIndex((prevIndex) => (prevIndex + 1) % tasks.length);
   };
 
   const handlePrevious = () => {
     setActiveIndex(
-      (prevIndex) => (prevIndex - 1 + items.length) % items.length
+      (prevIndex) => (prevIndex - 1 + tasks.length) % tasks.length
     );
   };
 
   const getVisibleItems = () => {
     const startIndex =
-      (activeIndex + items.length - Math.floor(itemsPerPage / 2)) %
-      items.length;
-    const endIndex = (startIndex + itemsPerPage) % items.length;
+      (activeIndex + tasks.length - Math.floor(itemsPerPage / 2)) %
+      tasks.length;
+    const endIndex = (startIndex + itemsPerPage) % tasks.length;
     if (startIndex < endIndex) {
-      return items.slice(startIndex, endIndex);
+      return tasks.slice(startIndex, endIndex);
     } else {
-      return [...items.slice(startIndex), ...items.slice(0, endIndex)];
+      return [...tasks.slice(startIndex), ...tasks.slice(0, endIndex)];
     }
   };
+
   return (
     <Box
       sx={{
@@ -49,11 +51,13 @@ export const MyListSlider = () => {
     >
       <Grid container alignItems="center" justifyContent="center">
         {getVisibleItems().map((item, index) => (
-          <Grid item key={index}>
+          <Grid item key={item["_id"]}>
             <ListItem
               sx={{
                 width: 250,
                 height: 140,
+                cursor: "pointer",
+
                 ...(index === 1 && {
                   width: 500,
                   height: "100%",
@@ -61,12 +65,13 @@ export const MyListSlider = () => {
               }}
             >
               <Box
-                onClick={() => {
-                  console.log(item);
-                }}
+                onClick={() => handleUpdateResolveStatus(item["_id"], setTasks)}
               >
                 <Card
+                  onMouseEnter={() => setHovered(item["_id"])}
+                  onMouseLeave={() => setHovered(false)}
                   sx={{
+                    p: 1,
                     ...(index === 1 && {
                       boxShadow: "0 0 8px rgba(0, 0, 0, 0.5)",
                     }),
@@ -79,13 +84,13 @@ export const MyListSlider = () => {
                   }}
                 >
                   <CardContent sx={{ textAlign: "center", p: 1, pb: 0 }}>
-                    <Typography mb={1}>{item.description}</Typography>
+                    <Typography mb={1}>{item.activity}</Typography>
 
                     {index === 1 && (
                       <img
                         style={{ borderRadius: 2 }}
                         width={"100%"}
-                        src="https://cdn.pixabay.com/photo/2023/05/28/13/15/helicopter-8023696_1280.jpg"
+                        src={item.image}
                         alt={item.type}
                       />
                     )}
@@ -94,7 +99,11 @@ export const MyListSlider = () => {
                   <CardActions
                     sx={{ display: "flex", justifyContent: "center" }}
                   >
-                    <Button size="small">{item.type}</Button>
+                    <Button size="small">
+                      {hovered && hovered === item["_id"]
+                        ? `Add to the collection`
+                        : item.type}
+                    </Button>
                   </CardActions>
                 </Card>
               </Box>

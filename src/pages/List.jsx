@@ -29,8 +29,10 @@ const List = () => {
         Ideas in my list:
       </Typography>
 
-      {active === "slider" && <MyListSlider />}
-      {active === "list" && <CardList tasks={tasks} />}
+      {active === "slider" && (
+        <MyListSlider tasks={tasks} setTasks={setTasks} />
+      )}
+      {active === "list" && <CardList tasks={tasks} setTasks={setTasks} />}
     </Box>
   );
 };

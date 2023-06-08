@@ -32,12 +32,12 @@ const Home = () => {
         const data = await getTask(taskType.type);
         setTask(data);
 
-        //   if (data) {
-        //     const img = await getImg(data.activity);
-        //     if (img) {
-        //       setImageUrl(img.urls.regular);
-        //     }
-        //   }
+        if (data) {
+          const img = await getImg(data.activity);
+          if (img) {
+            setImageUrl(img.urls.regular);
+          }
+        }
       };
 
       fetch();

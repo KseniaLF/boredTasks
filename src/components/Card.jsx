@@ -5,18 +5,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import { updateResolveStatus } from "../services/DB";
+import { Box } from "@mui/material";
+import { handleUpdateResolveStatus } from "../helpers/handleUpdateResolveStatus";
 
-export const CardList = ({ tasks }) => {
-  const handleUpdateResolveStatus = (id) => {
-    const fetch = async () => {
-      const data = await updateResolveStatus(id, { resolved: true });
-      console.log(data);
-    };
-
-    fetch();
-  };
-
+export const CardList = ({ tasks, setTasks }) => {
   return (
     <div style={{ position: "relative" }}>
       <List
@@ -25,8 +17,8 @@ export const CardList = ({ tasks }) => {
         {tasks.map(({ _id: id, ...item }) => (
           <ListItem
             sx={{
-              width: 250,
-              height: 140,
+              width: 300,
+              height: 300,
             }}
             key={id}
           >
@@ -41,15 +33,30 @@ export const CardList = ({ tasks }) => {
                     "0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2)",
                 },
               }}
-              onClick={() => handleUpdateResolveStatus(id)}
+              onClick={() => handleUpdateResolveStatus(id, setTasks)}
             >
-              <CardContent sx={{ textAlign: "center", p: 1, pb: 0 }}>
-                <Typography>{item.activity}</Typography>
-              </CardContent>
+              <Box
+                sx={{
+                  p: 1,
+                  height: "100%",
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "end",
+                  flexDirection: "column",
+                  cursor: "pointer",
+                }}
+              >
+                <CardContent sx={{ textAlign: "center", p: 1, pb: 0 }}>
+                  <Typography mb={1}>{item.activity}</Typography>
 
-              <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-                <Button size="small">{item.type}</Button>
-              </CardActions>
+                  <img src={item.image} alt={item.type} height={150} />
+                </CardContent>
+
+                <CardActions sx={{ display: "flex", justifyContent: "center" }}>
+                  <Button size="small">{item.type}</Button>
+                </CardActions>
+              </Box>
             </Card>
           </ListItem>
         ))}

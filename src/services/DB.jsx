@@ -2,8 +2,9 @@ import axios from "axios";
 
 axios.defaults.baseURL = import.meta.env.VITE_DB_BASE_URL;
 
-export const getTask = async () => {
-  const response = await axios.get(`/tasks`);
+export const getTask = async (status) => {
+  const query = status ? "true" : "false";
+  const response = await axios.get(`/tasks?resolved=${query}`);
   return response.data;
 };
 

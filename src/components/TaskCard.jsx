@@ -15,6 +15,7 @@ export const TaskCard = ({ task, imageUrl, setTaskType }) => {
       type: task.type,
       accessibility: task.accessibility,
       price: task.price,
+      image: imageUrl,
     };
 
     const fetch = async () => {
