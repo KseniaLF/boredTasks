@@ -23,7 +23,8 @@ export const TaskCard = ({ task, imageUrl, setTaskType }) => {
       console.log(data);
 
       if (data) {
-        setTaskType(data.type);
+        const randomParam = Math.random();
+        setTaskType({ type: data.type, randomParam });
       }
     };
 
@@ -54,9 +55,7 @@ export const TaskCard = ({ task, imageUrl, setTaskType }) => {
         </CardContent>
 
         <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-          <Button size="small">
-            {hovered ? `Mark as completed` : task.type}
-          </Button>
+          <Button size="small">{hovered ? `Add to my list` : task.type}</Button>
         </CardActions>
       </Card>
     </Box>
