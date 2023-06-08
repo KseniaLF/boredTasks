@@ -23,10 +23,10 @@ export const TaskCard = ({ task, imageUrl }) => {
           },
         }}
       >
-        <CardContent sx={{ textAlign: "center", p: 1, pb: 0 }}>
+        <CardContent sx={{ textAlign: "center", p: 1 }}>
           <Typography>{task.activity}</Typography>
 
-          {imageUrl && <img src={imageUrl} alt={task.type} width={400} />}
+          {imageUrl && <img src={imageUrl} alt={task.type} width={"100%"} />}
         </CardContent>
 
         <CardActions sx={{ display: "flex", justifyContent: "center" }}>

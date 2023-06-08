@@ -11,9 +11,7 @@ import { MyListSlider } from "./MyListSlider";
 export const CardList = () => {
   return (
     <div style={{ position: "relative" }}>
-      <MyListSlider />
-
-      {/* <List
+      <List
         sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
       >
         {activities.map((item) => (
@@ -44,7 +42,7 @@ export const CardList = () => {
             </Card>
           </ListItem>
         ))}
-      </List> */}
+      </List>
     </div>
   );
 };
