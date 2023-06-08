@@ -3,11 +3,13 @@ import { MySlider } from "../components/Slider";
 import { TaskCard } from "../components/TaskCard";
 import { useEffect, useState } from "react";
 import { getTask, getImg } from "../services/fetchBoredApi";
+import { Loader } from "../components/Loader";
 
 const Home = () => {
   const [task, setTask] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
   const [taskType, setTaskType] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   // useEffect(() => {
   //   const fetch = async () => {
@@ -27,6 +29,8 @@ const Home = () => {
   // }, []);
 
   useEffect(() => {
+    setIsLoading(true);
+
     if (taskType) {
       const fetch = async () => {
         const data = await getTask(taskType.type);
@@ -38,6 +42,8 @@ const Home = () => {
             setImageUrl(img.urls.regular);
           }
         }
+
+        setIsLoading(false);
       };
 
       fetch();
@@ -52,7 +58,9 @@ const Home = () => {
         Random task:
       </Typography>
 
-      {task && (
+      {isLoading && <Loader />}
+
+      {task && !isLoading && (
         <TaskCard task={task} imageUrl={imageUrl} setTaskType={setTaskType} />
       )}
     </Box>

@@ -31,17 +31,15 @@ export const TaskCard = ({ task, imageUrl, setTaskType }) => {
   };
 
   return (
-    <Box
-      mt={2}
-      sx={{ display: "flex", justifyContent: "center", cursor: "pointer" }}
-      onClick={handleClick}
-    >
+    <Box mt={2} sx={{ display: "flex", justifyContent: "center" }}>
       <Card
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
+        onClick={handleClick}
         sx={{
           width: 400,
           height: "100%",
+          cursor: "pointer",
           transition: "all 0.3s ease",
           "&:hover": {
             boxShadow:
