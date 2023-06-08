@@ -101,7 +101,7 @@ export const MyListSlider = ({ tasks, setTasks }) => {
                   >
                     <Button size="small">
                       {hovered && hovered === item["_id"]
-                        ? `Add to the collection`
+                        ? `Mark as completed`
                         : item.type}
                     </Button>
                   </CardActions>

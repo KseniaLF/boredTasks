@@ -55,7 +55,7 @@ export const TaskCard = ({ task, imageUrl, setTaskType }) => {
 
         <CardActions sx={{ display: "flex", justifyContent: "center" }}>
           <Button size="small">
-            {hovered ? `Add to the collection` : task.type}
+            {hovered ? `Mark as completed` : task.type}
           </Button>
         </CardActions>
       </Card>

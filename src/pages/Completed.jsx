@@ -59,7 +59,7 @@ const Completed = () => {
                       </TableCell>
                       <TableCell align="right">
                         <Typography fontSize={16}>
-                          {formatDate(row.createdAt)}
+                          {formatDate(row.updatedAt)}
                         </Typography>
                       </TableCell>
                     </TableRow>
@@ -75,7 +75,7 @@ const Completed = () => {
                     {row.activity}
                   </Typography>
                   <Typography>{row.type}</Typography>
-                  <Typography>{formatDate(row.createdAt)}</Typography>
+                  <Typography>{formatDate(row.updatedAt)}</Typography>
                 </Box>
               ))}
             </Hidden>

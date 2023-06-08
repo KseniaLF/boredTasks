@@ -7,8 +7,11 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import { Box } from "@mui/material";
 import { handleUpdateResolveStatus } from "../helpers/handleUpdateResolveStatus";
+import { useState } from "react";
 
 export const CardList = ({ tasks, setTasks }) => {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <div style={{ position: "relative" }}>
       <List
@@ -23,6 +26,9 @@ export const CardList = ({ tasks, setTasks }) => {
             key={id}
           >
             <Card
+              onMouseEnter={() => setHovered(id)}
+              onMouseLeave={() => setHovered(false)}
+              onClick={() => handleUpdateResolveStatus(id, setTasks)}
               sx={{
                 height: "100%",
                 width: "100%",
@@ -33,7 +39,6 @@ export const CardList = ({ tasks, setTasks }) => {
                     "0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2)",
                 },
               }}
-              onClick={() => handleUpdateResolveStatus(id, setTasks)}
             >
               <Box
                 sx={{
@@ -54,7 +59,11 @@ export const CardList = ({ tasks, setTasks }) => {
                 </CardContent>
 
                 <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-                  <Button size="small">{item.type}</Button>
+                  <Button size="small">
+                    {hovered && hovered === id
+                      ? `Mark as completed`
+                      : item.type}
+                  </Button>
                 </CardActions>
               </Box>
             </Card>
