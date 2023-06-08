@@ -4,12 +4,37 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import { useState } from "react";
+import { addTask } from "../services/DB";
 
-export const TaskCard = ({ task, imageUrl }) => {
+export const TaskCard = ({ task, imageUrl, setTaskType }) => {
   const [hovered, setHovered] = useState(false);
 
+  const handleClick = () => {
+    const taskData = {
+      activity: task.activity,
+      type: task.type,
+      accessibility: task.accessibility,
+      price: task.price,
+    };
+
+    const fetch = async () => {
+      const data = await addTask(taskData);
+      console.log(data);
+
+      if (data) {
+        setTaskType(data.type);
+      }
+    };
+
+    fetch();
+  };
+
   return (
-    <Box mt={2} sx={{ display: "flex", justifyContent: "center" }}>
+    <Box
+      mt={2}
+      sx={{ display: "flex", justifyContent: "center", cursor: "pointer" }}
+      onClick={handleClick}
+    >
       <Card
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}

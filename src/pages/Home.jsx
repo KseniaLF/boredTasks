@@ -9,22 +9,22 @@ const Home = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [taskType, setTaskType] = useState(null);
 
-  useEffect(() => {
-    const fetch = async () => {
-      const data = await getTask();
-      console.log(data);
-      setTask(data);
+  // useEffect(() => {
+  //   const fetch = async () => {
+  //     const data = await getTask();
+  //     console.log(data);
+  //     setTask(data);
 
-      if (data) {
-        const img = await getImg(data.activity);
-        if (img) {
-          setImageUrl(img.urls.regular);
-        }
-      }
-    };
+  //     if (data) {
+  //       const img = await getImg(data.activity);
+  //       if (img) {
+  //         setImageUrl(img.urls.regular);
+  //       }
+  //     }
+  //   };
 
-    fetch();
-  }, []);
+  //   fetch();
+  // }, []);
 
   useEffect(() => {
     if (taskType) {
@@ -32,12 +32,12 @@ const Home = () => {
         const data = await getTask(taskType.type);
         setTask(data);
 
-        if (data) {
-          const img = await getImg(data.activity);
-          if (img) {
-            setImageUrl(img.urls.regular);
-          }
-        }
+        //   if (data) {
+        //     const img = await getImg(data.activity);
+        //     if (img) {
+        //       setImageUrl(img.urls.regular);
+        //     }
+        //   }
       };
 
       fetch();
@@ -51,7 +51,10 @@ const Home = () => {
       <Typography component="h2" variant="h6" mt={1}>
         Random task:
       </Typography>
-      {task && <TaskCard task={task} imageUrl={imageUrl} />}
+
+      {task && (
+        <TaskCard task={task} imageUrl={imageUrl} setTaskType={setTaskType} />
+      )}
     </Box>
   );
 };
