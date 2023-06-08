@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import AddTaskIcon from "@mui/icons-material/AddTask";
+import logo from "../assets/logo.png";
 
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
@@ -43,8 +43,8 @@ function AppMenu() {
           pr: 2,
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <AddTaskIcon sx={{ mr: 1 }} />
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <img src={logo} alt="logo" width={40} />
 
           <Typography
             variant="h6"
