@@ -48,7 +48,7 @@ export const TaskCard = ({ task, imageUrl, setTaskType }) => {
         }}
       >
         <CardContent sx={{ textAlign: "center", p: 1 }}>
-          <Typography>{task.activity}</Typography>
+          <Typography mb={1}>{task.activity}</Typography>
 
           {imageUrl && <img src={imageUrl} alt={task.type} width={"100%"} />}
         </CardContent>

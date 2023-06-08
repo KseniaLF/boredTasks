@@ -1,9 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import List from "../pages/List";
+import { lazy } from "react";
 import Container from "@mui/material/Container";
+
+import Home from "../pages/Home";
 import Menu from "../components/Menu";
-import Achievements from "../pages/Achievements";
+const List = lazy(() => import("../pages/List"));
+const Achievements = lazy(() => import("../pages/Achievements"));
 
 function App() {
   return (

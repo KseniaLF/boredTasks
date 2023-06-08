@@ -11,27 +11,30 @@ const Home = () => {
   const [taskType, setTaskType] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect(() => {
-  //   const fetch = async () => {
-  //     const data = await getTask();
-  //     console.log(data);
-  //     setTask(data);
-
-  //     if (data) {
-  //       const img = await getImg(data.activity);
-  //       if (img) {
-  //         setImageUrl(img.urls.regular);
-  //       }
-  //     }
-  //   };
-
-  //   fetch();
-  // }, []);
-
   useEffect(() => {
     setIsLoading(true);
 
+    const fetch = async () => {
+      const data = await getTask();
+      console.log(data);
+      setTask(data);
+
+      if (data) {
+        const img = await getImg(data.activity);
+        if (img) {
+          setImageUrl(img.urls.regular);
+        }
+      }
+
+      setIsLoading(false);
+    };
+
+    fetch();
+  }, []);
+
+  useEffect(() => {
     if (taskType) {
+      setIsLoading(true);
       const fetch = async () => {
         const data = await getTask(taskType.type);
         setTask(data);
