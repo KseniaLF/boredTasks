@@ -1,4 +1,4 @@
-# boredTasks
+# Not bored tasks ✔
 
 ## Project Description
 
@@ -17,6 +17,8 @@
 5. Allow card: When you click on a card in the slider, it will be marked as allowed. It will be removed from the slider and the information from the card will be added to the third section on the `COMPLETED` page. Allowed ideas will appear in the table as completed items.
 
 6. Data Storage: Your assignments and accomplishments will be stored in the Database.
+
+7. Adaptivity is implemented.
 
 ---
 
