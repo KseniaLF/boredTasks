@@ -2,7 +2,7 @@
 
 ## Project Description
 
-### Welcome to Not Bored Tasks! In this interactive application you will be able to look for interesting tasks for yourself and perform them!
+#### Welcome to Not Bored Tasks! In this interactive application you will be able to look for interesting tasks for yourself and perform them!
 
 ## Project Objectives
 
