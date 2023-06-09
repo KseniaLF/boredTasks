@@ -1,21 +1,14 @@
 import { Box, Button, Typography } from "@mui/material";
 import { CardList } from "../components/Card";
 import { MyListSlider } from "../components/MyListSlider";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getTask } from "../services/DB";
+import { Loader } from "../components/Loader";
+import { useData } from "../hooks/useData";
 
 const List = () => {
   const [active, setActive] = useState("slider");
-  const [tasks, setTasks] = useState([]);
-
-  useEffect(() => {
-    const fetch = async () => {
-      const data = await getTask();
-      setTasks(data);
-    };
-
-    fetch();
-  }, []);
+  const { data, isLoading, setData } = useData(getTask);
 
   return (
     <Box mt={2}>
@@ -29,10 +22,14 @@ const List = () => {
         Ideas in my list:
       </Typography>
 
-      {active === "slider" && (
-        <MyListSlider tasks={tasks} setTasks={setTasks} />
+      {isLoading && <Loader />}
+
+      {active === "slider" && !isLoading && (
+        <MyListSlider tasks={data} setTasks={setData} />
       )}
-      {active === "list" && <CardList tasks={tasks} setTasks={setTasks} />}
+      {active === "list" && !isLoading && (
+        <CardList tasks={data} setTasks={setData} />
+      )}
     </Box>
   );
 };
