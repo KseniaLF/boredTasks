@@ -22,15 +22,14 @@
 
 ## Technologies
 
-1. The project was developed using the following technologies:
+ The project was developed using the following technologies:
 
-2. React: JavaScript library for creating user interfaces.
+1. `React`: JavaScript library for creating user interfaces.
 
-3. Material-UI (MUI): A user interface library for React that provides out-of-the-box components and styles.
+2. `Material-UI (MUI)`: A user interface library for React that provides out-of-the-box components and styles.
 
-4. Node.js: A server-side JavaScript execution environment, used for developing server-side applications and interacting with databases.
+3. `Node.js`: A server-side JavaScript execution environment, used for developing server-side applications and interacting with databases.
 
-5. MongoDB: For storing user data.
-MongoDB Compass: A graphical interface for interacting with MongoDB databases, providing convenient tools for administering and viewing data.
+4. `MongoDB`: For storing user data.
 
 And related libraries...
