@@ -59,7 +59,6 @@ export const MySlider = ({ setTaskType }) => {
             >
               <StyledLink
                 onClick={() => {
-                  console.log(123);
                   const randomParam = Math.random();
                   setTaskType({ type: item.type, randomParam });
                 }}

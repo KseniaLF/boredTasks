@@ -6,7 +6,6 @@ export const useData = (fetchData) => {
 
   useEffect(() => {
     setIsLoading(true);
-    console.log(1);
 
     const fetch = async () => {
       try {

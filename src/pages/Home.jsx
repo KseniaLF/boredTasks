@@ -16,7 +16,6 @@ const Home = () => {
 
     const fetch = async () => {
       const data = await getTask();
-      console.log(data);
       setTask(data);
 
       if (data) {

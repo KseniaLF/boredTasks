@@ -25,7 +25,7 @@ export const TaskCard = ({ task, imageUrl, setTaskType }) => {
         const randomParam = Math.random();
         setTaskType({ type: task.type, randomParam });
       } catch (err) {
-        console.log(console.error());
+        console.log(err);
       }
     };
 
