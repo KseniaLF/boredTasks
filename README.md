@@ -1,4 +1,4 @@
-# boredTasks
+# Not bored tasks ✔
 
 ## Project Description
 
