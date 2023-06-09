@@ -18,6 +18,8 @@
 
 6. Data Storage: Your assignments and accomplishments will be stored in the Database.
 
+7. Adaptivity is implemented.
+
 ---
 
 ## Technologies
